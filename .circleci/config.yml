@@ -1,11 +1,12 @@
 version: 2.1
 jobs:
   build:
-    - echo "building"
-  test:
-    - echo "testing"
-  deploy:
-    - echo "deploying"
+    steps:
+      echo: "building"
+  # test:
+  #   - echo "testing"
+  # deploy:
+  #   - echo "deploying"
 
     # working_directory: ~/project
     # docker:
@@ -35,9 +36,9 @@ workflows:
   build:
     jobs:
       - build
-  test:
-    jobs:
-      - test
-  deploy:
-    jobs:
-      - deploy
+  # test:
+  #   jobs:
+  #     - test
+  # deploy:
+  #   jobs:
+  #     - deploy
