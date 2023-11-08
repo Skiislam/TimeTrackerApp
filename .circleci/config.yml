@@ -7,22 +7,28 @@ jobs:
     steps:
       - checkout
       - run:
+          echo: "Updating NPM"
           name: Update NPM
           command: "sudo npm install -g npm"
       - restore_cache:
+          echo: "Restoring cache"
           key: dependency-cache-{{ checksum "package-lock.json" }}
       - run:
+          echo: "Installing dependencies"
           name: Install Dependencies
           command: npm install
       - run: npm install --save-dev firebase-tools
       - save_cache:
+          echo: "Saving cache"
           key: dependency-cache-{{ checksum "package-lock.json" }}
           paths:
             - ./node_modules
       - run:
+          echo: "Building foar production"
           name: Build application for production
           command: npm run build
       - run:
+          echo: "Deploying to Firebase"
           name: Deploy app to Firebase
           command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN
 workflows:
